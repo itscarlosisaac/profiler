@@ -4,6 +4,10 @@
   "main": "index.js",
   "author": "Carlos Isaac Martinez Batista <itscarlosisaac@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "serve": "webpack-dev-server",
+    "live": "live-server dist/"
+  },
   "dependencies": {
     "babel-core": "^6.23.0",
     "babel-loader": "^7.1.2",
@@ -11,6 +15,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
     "node-sass": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
