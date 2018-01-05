@@ -1,0 +1,68 @@
+// Footer styles
+.app__footer{
+    background: #cccccc;
+    padding: 2rem 0 1rem;
+    h4{
+        margin: 0;
+    }
+    a{
+        color:#000;
+        text-decoration: none;
+    }
+
+    &--copyright{
+        font-size: 75%;
+        margin: 0;
+    }
+
+    &--links{
+        margin: 0;
+        padding: 0;
+        li{
+            display: inline-block;
+            list-style: none;
+            margin: 0 12px 0 0;
+            font-size: 75%;
+        }
+    }
+    .row:last-child{
+        margin-top: 25px;
+    }
+}
+
+.app__footer__faq{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.app__footer__reasons{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li{
+        a{
+            font-weight: bold;
+        }
+    }
+}
+
+.app__footer__contact__list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media all and (max-width:$mobile){
+    .app__footer{
+        &--content{
+            .columns{
+                margin-bottom: 2rem;
+                &:last-child{ margin-bottom: 0; }
+            }
+        }
+        &--legal{
+            text-align: center;
+        }
+    }
+}
