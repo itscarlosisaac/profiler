@@ -22,4 +22,20 @@
         color:#fff;
         margin-right: 0.9375rem;
     }
+    // Message box
+    &--join--message--box{
+        font-size: 14px;
+        background: #fff;
+        position: relative;
+        top:-3px;
+        color:#000;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 13px 25px;
+        margin-left: 5px;
+        border-radius:100px;
+        -moz-border-radius:100px;
+        -o-border-radius:100px;
+        -webkit-border-radius:100px;
+    }
 }
