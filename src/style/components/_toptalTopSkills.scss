@@ -1,0 +1,73 @@
+.app__toptal__skills{
+    &--header{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    &--list{
+        padding: 0;
+        width: 100%;
+        list-style: none;
+        column-count: 4;
+        -ms-column-count: 4;
+        -moz-column-count: 4;
+        -webkit-column-count: 4;
+        li{
+            position: relative;
+            padding-left: 20px;
+            &:hover{
+
+            }
+        }
+    }
+    &--content{
+        display: inline-block;
+        &:hover{
+            background: #000;
+            color:#fff;
+            cursor: pointer;
+        }
+    }
+
+    &--letter{
+        position: absolute;   
+        left:0;
+        top:0;
+        font-weight: bold;
+    }
+}
+
+@media all and (max-width:992px){
+    .app__toptal__skills{
+        &--list{
+            padding: 0;
+            width: 100%;
+            list-style: none;
+            column-count: 2;
+            -ms-column-count: 2;
+            -moz-column-count: 2;
+            -webkit-column-count: 2;
+        }
+    }
+}
+
+
+@media all and (max-width:460px){
+    .app__toptal__skills{
+        &--list{
+            padding: 0;
+            width: 100%;
+            list-style: none;
+            column-count: 1;
+            -ms-column-count: 1;
+            -moz-column-count: 1;
+            -webkit-column-count: 1;
+            text-align: center;
+        }
+        &--letter{
+            position: initial;   
+            display: block;
+            font-weight: bold;
+        }
+    }
+}
