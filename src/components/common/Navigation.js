@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 
 class Navigation extends Component {
+
     render () {
         return (
             <div>
-                <nav>
+                <nav className={`app__navigation 
+                    ${this.props.navigationIsOpen ? 'app__navigation--open' : 'app__navigation--close'}`
+                }>
                     <ul>
                         <li><a href="#">what</a></li>
                         <li><a href="#">why</a></li>
