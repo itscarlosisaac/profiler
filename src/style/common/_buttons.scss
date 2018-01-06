@@ -1,0 +1,25 @@
+.app__btn{
+    &--round{
+        border-radius:2px;
+        -moz-border-radius:2px;
+        -o-border-radius:2px;
+        -webkit-border-radius:2px;
+    }
+    &--inline{
+        display: inline-block;
+    }
+    &--join--header{
+        background: #fff;
+        color:#000;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding:5px 10px;
+        margin-left: 5px;
+    }
+    &--login{
+        margin-left: 20px;
+        background: #808080;
+        color:#fff;
+        margin-right: 0.9375rem;
+    }
+}

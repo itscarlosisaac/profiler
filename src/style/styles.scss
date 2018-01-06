@@ -3,10 +3,16 @@
 
 // Base Styles
 @import './base/_normalize.scss';
+@import './base/_utilities.scss';
 @import './base/_foundation.scss';
 @import './base/_typography.scss';
 
 // Components
 @import './components/_header.scss';
+@import './components/_logo.scss';
 @import './components/_navigation.scss';
 @import './components/_footer.scss';
+
+// Common
+@import './common/_buttons.scss';
+@import './common/_joinToptal.scss';

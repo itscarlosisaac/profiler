@@ -1,0 +1,20 @@
+.app__header{
+    p{
+        margin: 0;
+    }
+    &--join{
+        color:white;
+        margin-bottom: 30px;
+    }
+    button{
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width:600px){
+    .app__header{
+        &--join{
+            display: none;
+        }
+    }
+}

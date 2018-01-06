@@ -108,3 +108,13 @@ sup {
 sub {
     bottom: -0.25em;
 }
+
+// Align
+.text__right{ text-align: right; }
+
+// Text Block
+.text__block{
+    &--white *{ color:#fff; }
+    &--15 *{ font-size: 15px}
+    &--normal * { font-weight: normal }
+}

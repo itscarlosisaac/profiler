@@ -1,0 +1,16 @@
+.app__header{
+    background: #000;
+    padding: 1.3rem 0;
+    &--call{
+
+    }
+}
+
+@media all and (max-width:600px){
+    .app__header{
+        padding-bottom: 0;
+        &--call{
+            display: none;
+        }
+    }
+}

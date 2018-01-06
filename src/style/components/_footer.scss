@@ -13,11 +13,14 @@
     &--copyright{
         font-size: 75%;
         margin: 0;
+        font-weight: 700;
     }
 
     &--links{
         margin: 0;
         padding: 0;
+        text-align: right;
+        font-weight: 700;
         li{
             display: inline-block;
             list-style: none;
@@ -61,7 +64,8 @@
                 &:last-child{ margin-bottom: 0; }
             }
         }
-        &--legal{
+        &--legal,
+        &--links{
             text-align: center;
         }
     }
