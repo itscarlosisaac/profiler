@@ -1,0 +1,32 @@
+
+.profile__square{
+    padding: 10px;
+
+    &--title{
+        margin:0;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    &--quote{
+        padding: 0;
+        margin:0;
+        p{
+            line-height: 1.4em;
+            em{
+                font-family: Georgia, Times, Times New Roman, serif;
+                font-size: 14px;
+            }
+        }
+        &--author{
+            display: block;
+            text-align: right;
+        }
+    }
+}
+
+#map{
+    width: 310px;
+    height: 300px;
+    border: 1px solid red;
+}
