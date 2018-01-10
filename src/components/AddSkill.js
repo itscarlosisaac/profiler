@@ -26,13 +26,22 @@ class AddSkill extends Component {
         }
     }
 
+    handleRemove(e){
+        const toRemove = e.target.dataset.type;
+        const next = this.state.skills.filter( item => item.skill != toRemove )
+        this.setState( (prevState, nextState) => ({ skills: next }) )
+    }
+
     render () {
         return (
             <div>
                 <ul className="profile__info--skills">
                     {
                         this.state.skills.map( (item, index) => {
-                            return <li key={index} className={item.level}>{item.skill}</li>
+                            return <li key={index} className={item.level}>
+                                        {item.skill} 
+                                        <span onClick={this.handleRemove.bind(this)} data-type={item.skill} >Delete</span> 
+                                    </li>
                         })
                     }
                 </ul>
