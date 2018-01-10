@@ -1,17 +1,43 @@
 
 .profile__square{
     padding: 10px;
-
+    border:1px solid #e4e4e4;
+    &--black{
+        background: #000;
+    }
     &--title{
         margin:0;
         font-size: 16px;
         text-align: center;
+        &--white{
+            color:white;
+        }
     }
 
     &--quote{
         padding: 0;
         margin:0;
+        &:after{
+            display: block;
+            text-align: right;
+            content:'"';
+            font-family: "Hiragino Kaku Gothic Std","Hiragino Sans", "AppleGothic", sans-serif;
+            font-size: 60px;
+            position: relative;
+            opacity: .2;
+            margin-right: -15px;
+        }
         p{
+            &:before{
+                display: inline-block;
+                content:'"';
+                font-family: "Hiragino Kaku Gothic Std","Hiragino Sans", "AppleGothic", sans-serif;
+                font-size: 60px;
+                position: relative;
+                top: 20px;
+                opacity: .2;
+                margin-right: -15px;
+            }
             line-height: 1.4em;
             em{
                 font-family: Georgia, Times, Times New Roman, serif;
@@ -23,10 +49,4 @@
             text-align: right;
         }
     }
-}
-
-#map{
-    width: 310px;
-    height: 300px;
-    border: 1px solid red;
 }
