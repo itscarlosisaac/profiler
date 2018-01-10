@@ -1,0 +1,59 @@
+.add__skill__form{
+    position: relative;
+    width: 220px;
+
+    &--input{
+        width: 100%;
+    }
+
+    &--button{
+        padding: 2px 4px 1px;
+        border-radius: 0;
+        border: 1px solid gray;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    &--plus--icon{
+        background: rgb(172, 172, 172);
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        line-height: 19px;
+        color:#fff;
+        border-radius: 100px;
+        margin-left: 2px;
+        font-size: 16px;
+        padding-right: 1px;
+        text-align: center;
+    }
+
+    &--delete--icon{
+        background: rgb(187, 67, 67);
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        line-height: 19px;
+        color:#fff;
+        border-radius: 100px;
+        font-size: 16px;
+        padding-right: 1px;
+        text-align: center;
+        transform:rotate(45deg);
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        top:0;
+        bottom:0;
+        margin:auto;
+    }
+
+    &--select{
+        position: absolute;
+        right: 20px;
+        top: 4px;
+        width: 100px;
+        border: 1px solid gray;
+    }
+}
