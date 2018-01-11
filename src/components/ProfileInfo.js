@@ -37,7 +37,8 @@ class ProfileInfo extends Component {
             languages: languagesValue
         }) );
 
-        if( e.target.type == 'file' ){
+        if( e.target.type == 'file' && e.target.name === 'profilePic' ){
+            console.log(e.target)
             reader.onloadend = () => {
                 this.setState({
                   file: file,
@@ -45,6 +46,14 @@ class ProfileInfo extends Component {
                 });
               }
             reader.readAsDataURL(file)
+        }else if ( e.target.type == 'file' && e.target.name === 'resume' ){
+            reader.onloadend = () => {
+                this.setState({
+                  fileResume: fileResume,
+                  resumeURL: reader.result
+                });
+              }
+            reader.readAsDataURL(fileResume)
         }
     }
 
@@ -66,7 +75,7 @@ class ProfileInfo extends Component {
         return(
             <div className="row profile__info">
                 <div className="columns medium-4 large-3 profile__info--image" style={{ backgroundImage:`url(${imageURL})`} }>
-                    <input className="profile__info--image--form" onChange={this.handleChange.bind(this)} type="file" ref="imageURL" />
+                    <input className="profile__info--image--form" onChange={this.handleChange.bind(this)} type="file" ref="imageURL" name="profilePic" />
                 </div>
                 
                 <div className="columns medium-8 large-9 small-12">
@@ -80,9 +89,8 @@ class ProfileInfo extends Component {
                             <AddSkill deleteFromStore={this.handleRemove.bind(this)} skills={skills} sendSkills={this.getSkills.bind(this)} />
                         </form>
                         
-                        <input className="profile__info--image--form" onChange={this.handleChange.bind(this)} type="file" ref="resumeURL" placeholder="Upload Resume" />
-                            
-                        
+                        <input className="profile__info--image--form" onChange={this.handleChange.bind(this)} type="file" ref="resumeURL" name="resume" placeholder="Upload Resume" />
+                              
                         <button className="profile__info--publish" onClick={this.saveData.bind(this)}>
                             Publish Profile
                         </button>
@@ -93,7 +101,7 @@ class ProfileInfo extends Component {
     }
 
     renderProfile(){
-        const { name, address, languages, imageURL } = this.state;
+        const { name, address, languages, imageURL, resumeURL } = this.state;
         return(
             <div className="row profile__info">
                 <div className="columns large-3 medium-4 profile__info--image" style={{ backgroundImage:`url(${imageURL})`} }>
@@ -114,7 +122,7 @@ class ProfileInfo extends Component {
                                 })
                             }
                         </ul>
-                        <button>Download Resume</button>
+                        <a target="_blank" href={resumeURL}>Download Resume</a>
                         <button className="profile__info--publish" onClick={this.props.change}>
                             Edit Profile
                         </button>
