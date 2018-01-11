@@ -80,6 +80,7 @@ class ProfileInfo extends Component {
                 
                 <div className="columns medium-8 large-9 small-12">
                     <header className="profile__info--header">
+                        <button className="profile__info--publish" onClick={this.saveData.bind(this)}> Publish Profile </button>
                         <form className="profile__info--form" onSubmit={this.handleSubmit.bind(this)} onChange={this.handleChange.bind(this)}>
                             <h1 className="profile__info--title">
                                 <input ref="name"  type="text" defaultValue={ name } />
@@ -89,11 +90,10 @@ class ProfileInfo extends Component {
                             <AddSkill deleteFromStore={this.handleRemove.bind(this)} skills={skills} sendSkills={this.getSkills.bind(this)} />
                         </form>
                         
-                        <input className="profile__info--image--form" onChange={this.handleChange.bind(this)} type="file" ref="resumeURL" name="resume" placeholder="Upload Resume" />
-                              
-                        <button className="profile__info--publish" onClick={this.saveData.bind(this)}>
-                            Publish Profile
-                        </button>
+                        <div className="profile__info--resume--group">
+                            <label> <img src="../assets/images/arrow-top.png" /> Upload Resume</label>
+                            <input className="profile__info--resume--form" onChange={this.handleChange.bind(this)} type="file" ref="resumeURL" name="resume" placeholder="Upload Resume" />
+                        </div>
                     </header>
                 </div>
             </div>
@@ -109,6 +109,7 @@ class ProfileInfo extends Component {
                 </div>
                 <div className="columns medium-8 large-9 small-12">
                     <header className="profile__info--header">
+                        <button className="profile__info--publish" onClick={this.props.change}> Edit Profile </button>
                         <h1 className="profile__info--title"> { name } </h1>
                         <address className="profile__info--address"> { address } </address>
                         <p className="profile__info--languages"> { languages }</p>
@@ -122,10 +123,7 @@ class ProfileInfo extends Component {
                                 })
                             }
                         </ul>
-                        <a className="profile__info--download--resume" target="_blank" href={resumeURL}>Download Resume</a>
-                        <button className="profile__info--publish" onClick={this.props.change}>
-                            Edit Profile
-                        </button>
+                        <a className="profile__info--download--resume" target="_blank" href={resumeURL}><img src="../assets/images/arrow-down.png" /> Download Resume</a>
                     </header>
                 </div>
             </div>
