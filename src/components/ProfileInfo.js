@@ -122,7 +122,7 @@ class ProfileInfo extends Component {
                                 })
                             }
                         </ul>
-                        <a target="_blank" href={resumeURL}>Download Resume</a>
+                        <a className="profile__info--download--resume" target="_blank" href={resumeURL}>Download Resume</a>
                         <button className="profile__info--publish" onClick={this.props.change}>
                             Edit Profile
                         </button>

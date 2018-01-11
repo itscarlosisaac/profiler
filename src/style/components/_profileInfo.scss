@@ -23,6 +23,24 @@
         }
     }
 
+    &--download--resume{
+        position: absolute;
+        right: 0;
+        bottom: 20px;
+        background: #000;
+        display: block;
+        border-radius: 100px;
+        height: 25px;
+        line-height: 20px;
+        width: auto;
+        color: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 13px;
+        padding: 3px 16px 4px;
+    }
+
     &--header{
         padding: 20px 30px;
         width: 100%;
