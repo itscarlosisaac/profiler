@@ -21,12 +21,12 @@ class HomePage extends Component {
       this.state = {
           editMode: false,
           profileData: {
-              imageURL: "http://www.placehold.it/240x240",
+              imageURL: "",
               name: "Add Name",
               address: "Add Location",
               languages: "Add Languages",
               skills: [],
-              resumeFile: ''
+              resumeURL: ''
           },
           portfolio: [],
           experience: [],
@@ -42,20 +42,19 @@ class HomePage extends Component {
       const Data =
           JSON.parse(localStorage.getItem("toptal-profile")) ||
           localStorage.setItem("toptal-profile", JSON.stringify(MODEL));
-
       if (Data !== {} && Data !== undefined) {
           this.setState((prevState, nextState) => ({
               profileData: {
-                  imageURL: Data.imageURL,
                   name: Data.name,
+                  imageURL: Data.imageURL,
                   languages: Data.languages,
                   address: Data.address,
                   skills: Data.skills,
-                  resumeFile: Data.resumeFile
+                  resumeURL: Data.resumeURL
               },
               portfolio: Data.portfolio,
               experience: Data.experience,
-              sampleCode: Data.SampleCodeUrl,
+              sampleCode: Data.sampleCode,
               preferedEnviroments: Data.preferedEnviroments,
               availability: Data.availability,
               projects: Data.projects,
@@ -89,14 +88,33 @@ class HomePage extends Component {
     this.setState( () => ({ portfolio }))
   }
 
+  handleSaveExperience(experience){
+    this.setState( () => ({ experience }))
+  }
+
+  handleQuoteSave(quoteContent){
+      const one = this.refs.quoteOne.state.quote;
+      const two = this.refs.quoteTwo.state.quote;
+      const three = this.refs.quoteThree.state.quote;
+      const four = this.refs.quoteFour.state.quote;
+      this.setState( () => ({
+        quotes: [one, two, three, four]
+      }) )
+  }
+
   handleEditMode() {
     this.setState((prevState, nextState) => ({
       editMode: !prevState.editMode
     }));
   }
 
+  handleSampleCode(sampleCodeURL){
+    this.setState( () => ({ sampleCode: sampleCodeURL }) )
+  }
+
   render() {
-    const store = localStorage.getItem("toptal-profile") || {};
+    const store = JSON.parse(localStorage.getItem("toptal-profile")) || {};
+    
     return (
       <div>
         <Header />
@@ -105,7 +123,7 @@ class HomePage extends Component {
           change={this.handleEditMode.bind(this)}
           editMode={this.state.editMode}
           saveData={this.handleSaveData.bind(this)}
-          data={this.state.profileData} />
+          data={store.profileData} />
 
         <div className="row align-justify collapse">
 
@@ -118,28 +136,60 @@ class HomePage extends Component {
 
           <ExperienceSquare 
             data={this.state.experience} 
+            handleSaveExperience={this.handleSaveExperience.bind(this)}
             editing={this.state.editMode} 
             title="Experience" />
 
           <SampleCodeSquare 
-            title="Sample code and algorithms" />
+            handleSampleCode={this.handleSampleCode.bind(this)}
+            data={this.state.sampleCode}
+            editing={this.state.editMode} />
 
-          <AvailabilitySquare />
+          <AvailabilitySquare
+            title="Availability" />
         </div>
 
         <div className="row align-justify collapse">
-          <QuoteSquare title="The most amazing..." />
-          <QuoteSquare title="In clients I look for..." />
-          <MapLocationSquare address={this.state.profileData.address} />
-          <QuoteSquare title="Note" />
+
+          <QuoteSquare ref="quoteOne"
+            name={this.state.profileData.name}
+            data={this.state.quotes[0]}
+            handleQuoteSave={this.handleQuoteSave.bind(this)}
+            editing={this.state.editMode}  
+            title="The most amazing..." />
+
+          <QuoteSquare ref="quoteTwo"
+            name={this.state.profileData.name}
+            data={this.state.quotes[1]}
+            handleQuoteSave={this.handleQuoteSave.bind(this)}
+            editing={this.state.editMode} 
+            title="In clients I look for..." />
+
+          <MapLocationSquare 
+            name={store.profileData.name}
+            address={store.profileData.address} />
+
+          <QuoteSquare ref="quoteThree"
+            name={this.state.profileData.name}
+            data={this.state.quotes[2]}
+            handleQuoteSave={this.handleQuoteSave.bind(this)}
+            editing={this.state.editMode} 
+            title="Note" />
         </div>
 
         <div className="row align-justify collapse">
-          <h1>Let me introduce myself...</h1>
+          <h1 className="divider__title">Let me introduce myself ...</h1>
         </div>
 
         <div className="row align-justify collapse">
-          <QuoteSquare title="In clients I look for..." />
+
+          <QuoteSquare ref="quoteFour"
+            name={this.state.profileData.name}
+            data={this.state.quotes[3]}
+            handleQuoteSave={this.handleQuoteSave.bind(this)}
+            editing={this.state.editMode} 
+            title="The most amazing ..." />
+
         </div>
 
         <div className="row align-justify">
