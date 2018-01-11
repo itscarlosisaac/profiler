@@ -77,12 +77,12 @@ class PortfolioSquare extends Component {
     renderContent(){
         return(
             <div className="columns medium-3 small-12" >
-                <div className="profile__square">
-                    <h3 className="profile__square--title">{this.props.title}</h3>
+                <div className="portfolio__square">
+                    <h3 className="profile__square--title profile__square--title--hasSub">{this.props.title}</h3>
                     <span className="portfolio__subtitle">
                         { this.props.subtitle }
                     </span>
-                    <ul>
+                    <ul className="portfolio__list">
                         {
                             this.props.data.map( (project, index) => {
                                 return <li key={index}><b>{project.title}</b>, {project.skills}</li>
