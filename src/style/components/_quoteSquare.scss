@@ -2,42 +2,65 @@
 .profile__square{
     padding: 10px;
     border:1px solid #e4e4e4;
+    min-height: 240px;
+    position: relative;
     &--black{
         background: #000;
     }
     &--title{
-        margin:0;
+        margin:0 auto 40px auto;
         font-size: 16px;
         text-align: center;
+        max-width: 80%;
+        line-height: 1.3em;
+        color:#4d4d4d;
         &--white{
             color:white;
         }
+        &--hasSub {
+            margin-bottom: 0;
+        }
+        &--smallMar{
+            margin-bottom: 10px;
+        }
+    }
+
+    .section__divider{
+        margin: 10px -10px 15px -10px;
+        height: 1px;
+        background: #e5e5e5;
+        border: 0;
+    }
+
+    &--left--quote{
+        display: block;
+        text-align: right;
+        font-family: Arial, Helvetica, "AppleGothic", sans-serif;
+        font-size: 100px;
+        font-weight: bold;
+        position: absolute;
+        opacity: .1;
+        top: 78px;
+        left: 1px;
+    }
+
+    &--right--quote{
+        display: inline-block;
+        font-family: Arial, Helvetica, "AppleGothic", sans-serif;
+        font-size: 100px;
+        font-weight: bold;
+        position: absolute;
+        bottom: 0;
+        right:3px;
+        opacity: .1;
     }
 
     &--quote{
         padding: 0;
         margin:0;
-        &:after{
-            display: block;
-            text-align: right;
-            content:'"';
-            font-family: "Hiragino Kaku Gothic Std","Hiragino Sans", "AppleGothic", sans-serif;
-            font-size: 60px;
-            position: relative;
-            opacity: .2;
-            margin-right: -15px;
-        }
+        
         p{
-            &:before{
-                display: inline-block;
-                content:'"';
-                font-family: "Hiragino Kaku Gothic Std","Hiragino Sans", "AppleGothic", sans-serif;
-                font-size: 60px;
-                position: relative;
-                top: 20px;
-                opacity: .2;
-                margin-right: -15px;
-            }
+            padding: 0 10px;
             line-height: 1.4em;
             em{
                 font-family: Georgia, Times, Times New Roman, serif;
@@ -48,5 +71,18 @@
             display: block;
             text-align: right;
         }
+    }
+}
+
+.availability__square{
+    &--bigTitle{
+        margin: -30px 0 0 0;
+        color:#4d4d4d;
+        text-align: center;
+    }
+    &--enviroments{
+        margin: 0 auto;
+        text-align: center;
+        max-width: 85%;
     }
 }

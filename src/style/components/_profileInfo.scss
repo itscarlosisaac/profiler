@@ -8,6 +8,8 @@
         height: inherit;
         position: relative;
         background: #000;
+        background-size: cover;
+        background-position: center;
         &--form{
             position: absolute;
             left: 0;
@@ -116,5 +118,13 @@
         position: absolute;
         right: 0;
         top:20px;
+    }
+}
+
+@media all and (max-width:$mobile){
+    .profile__info{    
+        &--image{
+            height: 240px;
+        }
     }
 }
