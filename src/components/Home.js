@@ -64,7 +64,7 @@ class HomePage extends Component {
   }
 
   handleSaveData(data) {
-    const { name, address, languages, imageURL, skills } = data;
+    const { name, address, languages, imageURL, skills, resumeURL} = data;
     this.setState((prevState, nextState) => ({
         editMode: false,
         profileData: {
@@ -72,7 +72,8 @@ class HomePage extends Component {
             address,
             languages,
             imageURL,
-            skills
+            skills,
+            resumeURL
         }
     }));
 
