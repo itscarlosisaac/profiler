@@ -1,6 +1,6 @@
-.to__hire{
-    background: #000;
-    color:#fff;
+.qa__form{
+    background: #e5e5e5;
+    color:#000;
     text-align: center;
     position: relative;
     padding: 30px 0;
@@ -31,23 +31,16 @@
         cursor: pointer;
     }
 
-    .as__dev{
-        position: absolute;
-        right: 20px;
-        top:0;
-        bottom:0;
-        height: 20px;
-        line-height: 20px;
-        margin: auto;
-        cursor: pointer;
+    p{
+        display: block;
+        margin: 0;
     }
 }
 
 @media all and (max-width:$mobile){
-    .to__hire{
+    .qa__form{
         text-align: center;
         h1{
-            display: block;
             font-size: 20px;
         }
         button{
@@ -55,10 +48,8 @@
             width: 100px;
             font-size: 14px;
         }
-        .as__dev{
-            position: initial;
-            display: inline-block;
-            margin-left: 30px;
+        p{
+            margin-top: 15px;
         }
     }
 }

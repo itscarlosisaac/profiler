@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "./common/Header";
 import ToHire from "./common/ToHire";
+import QandAForm from './common/Q&A'
 import ProfileInfo from "./ProfileInfo";
 import PortfolioSuqare from "./PortfolioSquare";
 import ExperienceSquare from "./ExperienceSquare";
@@ -12,7 +13,7 @@ import ToptalTopSkills from "./ToptalTopSkills";
 import JoinMessageBox from "./JoinMessageBox";
 import Footer from "./common/Footer";
 import PortfolioSquare from "./PortfolioSquare";
-import { setTimeout } from "timers";
+
 import MODEL from "./utils/Model";
 
 
@@ -194,7 +195,9 @@ class HomePage extends Component {
 
         </div>
 
-        <ToHire name={store.profileData.name} />
+        {
+          this.state.editMode ? <QandAForm /> : <ToHire name={store.profileData.name} />
+        }
 
         <ToptalTopSkills />
         <JoinMessageBox />
