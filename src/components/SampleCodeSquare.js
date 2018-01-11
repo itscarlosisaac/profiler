@@ -44,8 +44,8 @@ class SampleCodeSquare extends Component {
         const { imageURL } = this.state;
         return (
             <div className="columns medium-3 small-12" >
-                <div className="profile__square">
-                    <h3 className="profile__square--title">{this.props.title}</h3>
+                <div className="profile__square sample__code">
+                    <h3 className="profile__square--title">Sample code <br/> and algorithms</h3>
                     <div className="sample__code--image" style={{ backgroundImage:`url(${imageURL})`} }>
                     </div>
                 </div>
