@@ -5,6 +5,7 @@ module.exports = {
         location: '',
         languages: '',
         skills: [],
+        imageURL: '',
         resumeURL: ''
     },
     portfolio: [],
