@@ -17,8 +17,6 @@ class MapLocationSquare extends Component {
             Promise: Promise 
         });
 
-        // this.setState({ address:this.props.address });
-
         Client.geocode({ address: this.state.address }).asPromise()
             .then((response) => {
                 this.setState((prevState, nextState ) => ({
@@ -67,13 +65,22 @@ class MapLocationSquare extends Component {
     }
 
     componentDidMount(){
-        this.getLocation();
+        if(this.props.address !== '' ){
+            this.getLocation();
+        }
     }
 
     render () {
         return (
-            <div>
+            <div className="columns medium-3 small-12 map__square">
                 <div id="map"> </div>
+                {
+                    this.props.name !== undefined ?
+                        <div className="map__address">
+                            { this.props.name.split(' ')[0] } lives in {this.state.address} (see map)
+                        </div> : ''
+                }
+               
             </div>
         )
     }
