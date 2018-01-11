@@ -10,7 +10,8 @@ class QuoteSquare extends Component {
         this.state = {
             editing: this.props.editing,
             quote: '',
-            author: this.props.name || ''
+            author: this.props.name || '',
+            mouseover:false
         }
     }
 
@@ -25,10 +26,25 @@ class QuoteSquare extends Component {
         this.props.handleQuoteSave(this.state.quote);
     }
 
+    handleMouseIn(){
+        this.setState( () =>( {
+            mouseover: true
+        }))
+    }
+
+    handleMouseOut(){
+        this.setState( () =>( {
+            mouseover: false
+        }))
+    }
+
     renderForm(){
         return (
             <div className="columns medium-3 small-12" >
-                <div className="profile__square profile__square--black quote__square">
+                <div 
+                    className="profile__square profile__square--black quote__square" 
+                    onMouseEnter={this.handleMouseIn.bind(this)}
+                    onMouseLeave={this.handleMouseOut.bind(this)}>
                     <h3 className="profile__square--title profile__square--title--white">{this.props.title}</h3>
                     <form 
                         onInput={this.handleQuoteSave.bind(this)}
@@ -36,6 +52,9 @@ class QuoteSquare extends Component {
                         <textarea className="quote__text__field" defaultValue={this.props.data}></textarea>
                     </form>
                 </div>
+                { 
+                    // this.state.mouseover ? "" : 'Add content'
+                }
             </div>
         )
     }

@@ -1,0 +1,60 @@
+.to__hire{
+    background: #000;
+    color:#fff;
+    text-align: center;
+    position: relative;
+    padding: 30px 0;
+    margin-top: 1px;
+    h1{
+        font-size: 24px;
+        font-weight: 400;
+        display: inline-block;
+        margin: 0;
+    }
+
+    button{
+        color:#000;
+        background: #fff;
+        width: 130px;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 100px;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: bold;
+        -moz-border-radius: 100px;
+        -ms-border-radius: 100px;
+        -o-border-radius: 100px;
+        margin-left: 10px;
+    }
+
+    .as__dev{
+        position: absolute;
+        right: 20px;
+        top:0;
+        bottom:0;
+        height: 20px;
+        line-height: 20px;
+        margin: auto;
+    }
+}
+
+@media all and (max-width:$mobile){
+    .to__hire{
+        text-align: center;
+        h1{
+            display: block;
+            font-size: 20px;;
+        }
+        button{
+            display: inline-block;
+            width: 100px;
+            font-size: 14px;
+        }
+        .as__dev{
+            position: initial;
+            display: inline-block;
+            margin-left: 30px;
+        }
+    }
+}

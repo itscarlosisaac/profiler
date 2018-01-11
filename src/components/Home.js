@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "./common/Header";
+import ToHire from "./common/ToHire";
 import ProfileInfo from "./ProfileInfo";
 import PortfolioSuqare from "./PortfolioSquare";
 import ExperienceSquare from "./ExperienceSquare";
@@ -193,15 +194,7 @@ class HomePage extends Component {
 
         </div>
 
-        <div className="row align-justify">
-          <div className="columns">
-            <h1>To hire Martin join us as a</h1>
-            <button>Client</button>
-          </div>
-          <div className="columns">
-            <p>or as a developer</p>
-          </div>
-        </div>
+        <ToHire name={store.profileData.name} />
 
         <ToptalTopSkills />
         <JoinMessageBox />
