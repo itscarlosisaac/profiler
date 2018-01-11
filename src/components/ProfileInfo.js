@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import AddSkill from './AddSkill'
 
 class ProfileInfo extends Component {
 
@@ -6,11 +7,18 @@ class ProfileInfo extends Component {
         super(props)
         this.state = {
             imageURL: this.props.data.imageURL || '',
+            resumeURL: this.props.data.resumeURL || '',
+            fileResume: '',
             file: '',
             name: this.props.data.name || 'Add name',
             address: this.props.data.address ||'Add location',
-            languages: this.props.data.languages ||'Add languages'
+            languages: this.props.data.languages ||'Add languages',
+            skills: this.props.data.skills || []
         }
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
     }
 
     handleChange(e){
@@ -20,6 +28,7 @@ class ProfileInfo extends Component {
         const languagesValue = this.refs.languages.value;
         const imageURLValue = this.refs.imageURL.value;
         const file = this.refs.imageURL.files[0];
+        const fileResume = this.refs.resumeURL.files[0]
         const reader = new FileReader();
 
         this.setState( () => ({ 
@@ -39,26 +48,46 @@ class ProfileInfo extends Component {
         }
     }
 
+    getSkills(skills){
+        this.setState( () => ({ skills }))
+    }
+
+    handleRemove(toRemove){
+        const next = this.state.skills.filter( item => item.skill != toRemove )
+        this.setState( ( ) => ({ skills: next }) )
+    }
+
     saveData(){
         this.props.saveData(this.state);
     }
 
+    componentWillMount(){
+        console.log(this.props)
+    }
+
     renderEditing(){
-        const { name, address, languages, imageURL } = this.state;
+        const { name, address, languages, imageURL, skills } = this.state;
         return(
             <div className="row profile__info">
-                <div className="profile__info--image">
-                    <img src={imageURL} width="230" height="230" />
-                    <input onChange={this.handleChange.bind(this)} type="file" ref="imageURL" />
+                <div className="columns medium-4 large-3 profile__info--image" style={{ backgroundImage:`url(${imageURL})`} }>
+                    <input className="profile__info--image--form" onChange={this.handleChange.bind(this)} type="file" ref="imageURL" />
                 </div>
-                <div>
-                    <header>
-                        <form onChange={this.handleChange.bind(this)}>
-                            <input ref="name"  type="text" defaultValue={ name } />
-                            <input ref="address" type="text" defaultValue={ address } />
-                            <input ref="languages" type="text" defaultValue={ languages } />
+                
+                <div className="columns medium-8 large-9 small-12">
+                    <header className="profile__info--header">
+                        <form className="profile__info--form" onSubmit={this.handleSubmit.bind(this)} onChange={this.handleChange.bind(this)}>
+                            <h1 className="profile__info--title">
+                                <input ref="name"  type="text" defaultValue={ name } />
+                            </h1>
+                            <address className="profile__info--address"><input ref="address" type="text" defaultValue={ address } /></address>
+                            <p className="profile__info--languages"><input ref="languages" type="text" defaultValue={ languages } /></p>
+                            <AddSkill deleteFromStore={this.handleRemove.bind(this)} skills={skills} sendSkills={this.getSkills.bind(this)} />
                         </form>
-                        <button onClick={this.saveData.bind(this)}>
+                        
+                        <input className="profile__info--image--form" onChange={this.handleChange.bind(this)} type="file" ref="resumeURL" placeholder="Upload Resume" />
+                            
+                        
+                        <button className="profile__info--publish" onClick={this.saveData.bind(this)}>
                             Publish Profile
                         </button>
                     </header>
@@ -71,20 +100,25 @@ class ProfileInfo extends Component {
         const { name, address, languages, imageURL } = this.state;
         return(
             <div className="row profile__info">
-                <div className="profile__info--image">
-                    <img src={imageURL} width="280" height="280" />
+                <div className="columns large-3 medium-4 profile__info--image" style={{ backgroundImage:`url(${imageURL})`} }>
+                    
                 </div>
-                <div className="columns ">
+                <div className="columns medium-8 large-9 small-12">
                     <header className="profile__info--header">
                         <h1 className="profile__info--title"> { name } </h1>
                         <address className="profile__info--address"> { address } </address>
                         <p className="profile__info--languages"> { languages }</p>
+                        {this.state.skills.length == 0 ? <p className="profile__info--languages">Add Skills</p> : false }
                         <ul className="profile__info--skills">
-                            <li>PHP</li>
-                            <li>Ruby</li>
-                            <li>JavaScript</li>
-                            <li>ActionScript</li>
+                            {
+                                this.state.skills.map( (item, index) => {
+                                    return <li key={index} className={item.level}>
+                                                {item.skill} 
+                                            </li>
+                                })
+                            }
                         </ul>
+                        <button>Download Resume</button>
                         <button className="profile__info--publish" onClick={this.props.change}>
                             Edit Profile
                         </button>
