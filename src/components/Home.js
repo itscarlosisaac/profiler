@@ -19,7 +19,7 @@ class HomePage extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          editMode: false,
+          editMode: true,
           profileData: {
               imageURL: "",
               name: "Add Name",

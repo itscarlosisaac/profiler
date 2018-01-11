@@ -61,10 +61,6 @@ class ProfileInfo extends Component {
         this.props.saveData(this.state);
     }
 
-    componentWillMount(){
-        console.log(this.props)
-    }
-
     renderEditing(){
         const { name, address, languages, imageURL, skills } = this.state;
         return(

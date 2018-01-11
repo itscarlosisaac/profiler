@@ -7,7 +7,8 @@ class MapLocationSquare extends Component {
         super(props);
         this.state = {
             address: this.props.address,
-            geolocation: {}
+            geolocation: {},
+            noMap: true
         }
     }
 
@@ -20,7 +21,8 @@ class MapLocationSquare extends Component {
         Client.geocode({ address: this.state.address }).asPromise()
             .then((response) => {
                 this.setState((prevState, nextState ) => ({
-                    geolocation: response.json.results[0].geometry.location 
+                    geolocation: response.json.results[0].geometry.location,
+                    noMap: false
                 }))
             })
             .then(() => {
@@ -28,6 +30,9 @@ class MapLocationSquare extends Component {
             })
             .catch((err) => {
                 console.log(err);
+                this.setState((prevState, nextState ) => ({
+                    noMap: true
+                }))
             });
     }
 
@@ -72,7 +77,7 @@ class MapLocationSquare extends Component {
 
     render () {
         return (
-            <div className="columns medium-3 small-12 map__square">
+            <div className={`columns medium-3 small-12 map__square ${this.state.noMap ? 'no-map' : false }`}>
                 <div id="map"> </div>
                 {
                     this.props.name !== undefined ?

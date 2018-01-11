@@ -33,7 +33,7 @@ class QuoteSquare extends Component {
                     <form 
                         onInput={this.handleQuoteSave.bind(this)}
                         onChange={this.handleChange.bind(this)} >
-                        <textarea defaultValue={this.props.data}></textarea>
+                        <textarea className="quote__text__field" defaultValue={this.props.data}></textarea>
                     </form>
                 </div>
             </div>
@@ -48,7 +48,7 @@ class QuoteSquare extends Component {
                     <h3 className="profile__square--title">{this.props.title}</h3>
                     <blockquote className="profile__square--quote">
                         <p> <em> {this.props.data} </em> </p>
-                        <span className="profile__square--quote--author"> &ndash; {this.state.author} </span>
+                        <span className="profile__square--quote--author"> {this.props.author != '' ? '' : '&ndash;'} {this.state.author} </span>
                     </blockquote>
                     <span className="profile__square--right--quote">&rdquo;</span>
                 </div>
