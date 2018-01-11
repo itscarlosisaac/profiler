@@ -86,3 +86,16 @@
         max-width: 85%;
     }
 }
+
+
+.quote__text__field{
+    width: 100%;
+    min-height: 130px;
+    border:none;
+    resize: none;
+    border-radius: 0;
+    padding: 10px;
+    font-style: italic;
+    font-size: 16px;;
+    font-family: Georgia, Times, Times New Roman, serif;
+}

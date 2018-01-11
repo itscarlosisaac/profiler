@@ -2,6 +2,7 @@
 .map__square{
     height: 240px;
     position: relative;
+    border:1px solid #e4e4e4;
 }
 
 .map__address{
@@ -19,4 +20,8 @@
 #map{
     width: inherit;
     min-height: 240px;
+}
+
+.no-map{
+    .map__address{ display: none; }
 }
