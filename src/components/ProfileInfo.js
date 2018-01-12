@@ -1,20 +1,23 @@
 import React, { Component } from 'react'
 import AddSkill from './AddSkill'
+import API from './utils/api'
 
 class ProfileInfo extends Component {
+    
+    componentWillMount(){
+        const store = API.getDataFromLocalStore('toptal-profile-info') || API.profileModel;
 
-    constructor(props){
-        super(props)
-        this.state = {
-            imageURL: this.props.data.imageURL || '',
-            resumeURL: this.props.data.resumeURL || '',
-            fileResume: '',
-            file: '',
-            name: this.props.data.name || 'Add name',
-            address: this.props.data.address ||'Add location',
-            languages: this.props.data.languages ||'Add languages',
-            skills: this.props.data.skills || []
-        }
+        this.setState( () => {
+            return {
+                name: store.name || 'Add name',
+                location: store.location || 'Add Location',
+                languages: store.languages || 'Add Languages',
+                address: store.address || 'Add Location',
+                imageURL: store.imageURL || '',
+                resumeURL: store.resumeURL || '',
+                skills: store.skills || [],
+            }
+        })
     }
 
     handleSubmit(e){
@@ -67,7 +70,7 @@ class ProfileInfo extends Component {
     }
 
     saveData(){
-        this.props.saveData(this.state);
+        API.saveDataToLocalStore('toptal-profile-info', this.state )
     }
 
     renderEditing(){
@@ -80,8 +83,11 @@ class ProfileInfo extends Component {
                 
                 <div className="columns medium-8 large-9 small-12">
                     <header className="profile__info--header">
-                        <button className="profile__info--publish" onClick={this.saveData.bind(this)}> Publish Profile </button>
-                        <form className="profile__info--form" onSubmit={this.handleSubmit.bind(this)} onChange={this.handleChange.bind(this)}>
+                        <button className="profile__info--publish" onClick={this.props.handleEditMode}> Publish Profile </button>
+                        <form className="profile__info--form" 
+                            onSubmit={this.handleSubmit.bind(this)} 
+                            onChange={this.handleChange.bind(this)}>
+
                             <h1 className="profile__info--title">
                                 <input ref="name"  type="text" defaultValue={ name } />
                             </h1>
@@ -89,6 +95,8 @@ class ProfileInfo extends Component {
                             <p className="profile__info--languages"><input ref="languages" type="text" defaultValue={ languages } /></p>
                             <AddSkill deleteFromStore={this.handleRemove.bind(this)} skills={skills} sendSkills={this.getSkills.bind(this)} />
                         </form>
+
+                        <p onClick={this.saveData.bind(this)}>SAVE DATA</p>
                         
                         <div className="profile__info--resume--group">
                             <label> <img src="../assets/images/arrow-top.png" /> Upload Resume</label>
@@ -109,20 +117,18 @@ class ProfileInfo extends Component {
                 </div>
                 <div className="columns medium-8 large-9 small-12">
                     <header className="profile__info--header">
-                        <button className="profile__info--publish" onClick={this.props.change}> Edit Profile </button>
+                    <button className="profile__info--publish" onClick={this.props.handleEditMode}> Edit Profile </button>
                         <h1 className="profile__info--title"> { name } </h1>
                         <address className="profile__info--address"> { address } </address>
                         <p className="profile__info--languages"> { languages }</p>
-                        {this.state.skills.length == 0 ? <p className="profile__info--languages">Add Skills</p> : false }
-                        <ul className="profile__info--skills">
-                            {
-                                this.state.skills.map( (item, index) => {
-                                    return <li key={index} className={item.level}>
-                                                {item.skill} 
-                                            </li>
-                                })
-                            }
-                        </ul>
+                        {this.state.skills.length == 0 ? <p className="profile__info--languages">Add Skills</p> : false } 
+                        <ul className="profile__info--skills"> 
+                            { 
+                                this.state.skills.map( (item, index) => { 
+                                    return <li key={index} className={item.level}> {item.skill} </li> 
+                                }) 
+                            } 
+                        </ul> 
                         <a className="profile__info--download--resume" target="_blank" href={resumeURL}><img src="../assets/images/arrow-down.png" /> Download Resume</a>
                     </header>
                 </div>
