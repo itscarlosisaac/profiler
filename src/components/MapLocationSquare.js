@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
 import googleMapClient from '@google/maps'
 import GoogleMapsLoader from 'google-maps'
+import API from './utils/api'
 
 class MapLocationSquare extends Component {
     constructor(props){
         super(props);
         this.state = {
-            address: this.props.address,
             geolocation: {},
             noMap: true
         }
     }
+
+    componentWillMount(){
+        const store = API.getDataFromLocalStore('toptal-profile-info') || API.profileModel;
+        this.setState( () => ({ address: store.address }))
+    }
+
+    componentDidMount () {
+        this.getLocation();
+    }
+    
 
     getLocation(){
         const Client = googleMapClient.createClient({
@@ -54,26 +64,20 @@ class MapLocationSquare extends Component {
         });
     }
 
-    componentWillReceiveProps(nextProps){
-        if( nextProps.address !== this.props.address ){
-            new Promise( ( resolve, reject ) => {
-                this.setState({ address:nextProps.address })
-                resolve();
-            })
-            .then( () => {
-                this.getLocation()
-            })
-            .catch((e) => {
-                console.log(e);
-            })
-        }
-    }
-
-    componentDidMount(){
-        if(this.props.address !== '' ){
-            this.getLocation();
-        }
-    }
+    // componentWillReceiveProps(nextProps){
+    //     if( nextProps.address !== this.props.address ){
+    //         new Promise( ( resolve, reject ) => {
+    //             this.setState({ address:nextProps.address })
+    //             resolve();
+    //         })
+    //         .then( () => {
+    //             this.getLocation()
+    //         })
+    //         .catch((e) => {
+    //             console.log(e);
+    //         })
+    //     }
+    // }
 
     render () {
         return (
