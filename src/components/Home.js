@@ -13,6 +13,7 @@ import ToptalTopSkills from "./ToptalTopSkills";
 import JoinMessageBox from "./JoinMessageBox";
 import Footer from "./common/Footer";
 import PortfolioSquare from "./PortfolioSquare";
+import ProjectSquare from "./ProjectSquare";
 
 import MODEL from "./utils/Model";
 
@@ -21,7 +22,7 @@ class HomePage extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          editMode: true,
+          editMode: false,
           profileData: {
               imageURL: "",
               name: "Add Name",
@@ -115,6 +116,25 @@ class HomePage extends Component {
     this.setState( () => ({ sampleCode: sampleCodeURL }) )
   }
 
+  handleProjectSave(data){
+    const oneURL = this.refs.projectOne.state.projectURL;
+    const oneTitle = this.refs.projectOne.state.title;
+
+    const twoURL = this.refs.projectTwo.state.projectURL;
+    const twoTitle = this.refs.projectTwo.state.title;
+
+    const threeURL = this.refs.projectThree.state.projectURL;
+    const threeTitle = this.refs.projectThree.state.title;
+
+    this.setState( () => ({
+      projects: [
+        { title: oneTitle, projectURL: oneURL },
+        { title: twoTitle, projectURL: twoURL },
+        { title: threeTitle, projectURL: threeURL }
+      ]
+    }) )
+  }
+
   render() {
     const store = JSON.parse(localStorage.getItem("toptal-profile")) || {};
     
@@ -186,6 +206,18 @@ class HomePage extends Component {
 
         <div className="row align-justify collapse">
 
+          <ProjectSquare ref="projectOne"
+            data={store.projects[0]}
+            handleProjectSave={this.handleProjectSave.bind(this)}
+            editing={this.state.editMode} 
+          />
+
+          <ProjectSquare 
+            data={store.projects[1]}
+            ref="projectTwo"
+            editing={this.state.editMode} 
+          />
+
           <QuoteSquare ref="quoteFour"
             name={this.state.profileData.name}
             data={this.state.quotes[3]}
@@ -193,6 +225,11 @@ class HomePage extends Component {
             editing={this.state.editMode} 
             title="The most amazing ..." />
 
+          <ProjectSquare 
+            data={store.projects[2]}
+            ref="projectThree"
+            editing={this.state.editMode} 
+          />
         </div>
 
         {
