@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from './utils/api'
 
 class ExperienceSquare extends Component {
 
@@ -7,35 +8,32 @@ class ExperienceSquare extends Component {
         this.state = {
             isEditing: this.props.editing,
             isDirty: false,
-            exp: this.props.data
         }
+    }
+
+    componentWillMount(){
+        const store = API.getDataFromLocalStore('toptap-experience-list') || API.experienceList;
+        this.setState( () => ({ experienceList:store }))
     }
 
     handleChange(e){
-        e.target.value != "" ?
-            this.setState( ( ) => ({ isDirty: true }) ) :
-            this.setState( ( ) => ({ isDirty: false }) )
+        const elements = document.querySelectorAll('.experience__square .form__row');
+        const nextState = [];
+
+        e.target.value != "" ? this.setState( ( ) => ({ isDirty: true }) ) : this.setState( ( ) => ({ isDirty: false }) )
+
+        elements.forEach( (row) => {
+            const exp = row.children[0].value;
+            const years = row.children[1].value;
+            if( exp !== "" && years !== "" )
+                nextState.push({ experience: exp, years: years });
+        })
+
+        this.setState( ( ) => ({ experienceList: nextState }) )
     }
 
     handleSaveExperience(){
-        this.props.handleSaveExperience(this.state.exp);
-    }
-
-    componentWillReceiveProps(nextProps){
-        if( this.setState.isEditing !== nextProps.editing ){
-            const elements = document.querySelectorAll('.experience__square .form__row');
-            const nextState = [];
-            elements.forEach( (row) => {
-                const exp = row.children[0].value;
-                const years = row.children[1].value;
-                if( exp !== "" && years !== "" )
-                    nextState.push({ experience: exp, years: years });
-            } )
-            new Promise( (resolve, reject) => {
-                this.setState( ( ) => ({ exp: nextState }) )
-                resolve();
-            })
-        }
+        API.saveDataToLocalStore('toptap-experience-list', this.state.experienceList);
     }
 
     renderFormRow(){
@@ -43,8 +41,8 @@ class ExperienceSquare extends Component {
         for( let i = 0; i < 7; i++ ){
             content.push( 
                 <div key={i} className="form__row">
-                    <input type="text" placeholder="Experience" defaultValue={this.props.data[i] ? this.props.data[i].experience : '' } />
-                    <input type="text" placeholder="Years" defaultValue={this.props.data[i] ? this.props.data[i].years : '' } />
+                    <input type="text" placeholder="Experience"  defaultValue={this.state.experienceList[i] ? this.state.experienceList[i].experience : '' } />
+                    <input type="text" placeholder="Years" defaultValue={this.state.experienceList[i] ? this.state.experienceList[i].years : '' }  />
                 </div>
             )
         }
@@ -73,7 +71,7 @@ class ExperienceSquare extends Component {
                     <h3 className="profile__square--title">{this.props.title}</h3>
                     <ul className="experience__list">
                         {
-                            this.props.data.map( (exp, index) => {
+                            this.state.experienceList.map( (exp, index) => {
                                 return <li key={index}><b>{exp.experience}</b>, {exp.years}</li>
                             })   
                         }
