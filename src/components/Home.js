@@ -32,8 +32,7 @@ class HomePage extends Component {
 
 
   render() {
-    const store = JSON.parse(localStorage.getItem("toptal-profile")) || {};
-    
+
     return (
       <div>
         <Header />
@@ -48,9 +47,49 @@ class HomePage extends Component {
             editing={this.state.editMode} 
             title="Portfolio" 
             subtitle="PHP, Ruby, JavaScript" />
-            
+
+          <ExperienceSquare 
+            editing={this.state.editMode} 
+            title="Experience" />
+
+          <SampleCodeSquare 
+            editing={this.state.editMode} />
+
+          <AvailabilitySquare
+            title="Availability" />
         </div>
 
+
+        <div className="row align-justify collapse">
+
+          <QuoteSquare
+            quoteNum={1}
+            editing={this.state.editMode}  
+            title="The most amazing..." />
+
+          <QuoteSquare
+            quoteNum={2}
+            editing={this.state.editMode} 
+            title="In clients I look for..." />
+
+          <MapLocationSquare />
+
+          <QuoteSquare
+            quoteNum={3}
+            editing={this.state.editMode} 
+            title="Note" />
+
+        </div>
+
+        <div className="row align-justify collapse">
+          <h1 className="divider__title">Let me introduce myself ...</h1>
+        </div>
+
+        { this.state.editMode ? <QandAForm /> : <ToHire name="Carlos" /> }
+
+        <ToptalTopSkills />
+        <JoinMessageBox />
+        <Footer />
 
       </div>
     );
