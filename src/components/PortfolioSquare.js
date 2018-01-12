@@ -1,49 +1,41 @@
 import React, { Component } from 'react'
-import EventEmitter from 'events';
-const emitter = new EventEmitter();
-
-console.log(emitter);
+import API from './utils/api'
 
 class PortfolioSquare extends Component {
     constructor(props){
         super(props)
         this.state = {
             isEditing: this.props.editing,
-            isDirty: false,
-            portfolio: this.props.data
+            isDirty: false
         }
+    }
+
+    componentWillMount(){
+        const store = API.getDataFromLocalStore('toptap-portfolio-list') || API.portfolioList;
+        this.setState( () => ({ portfolioList:store }))
     }
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.handleProjects(this.state.portfolio)
     }
 
     handleChange(e){
-        e.target.value != "" ?
-            this.setState( ( ) => ({ isDirty: true }) ) :
-            this.setState( ( ) => ({ isDirty: false }) )
+        const elements = document.querySelectorAll('.portfolio__square .form__row');
+        const nextState = [];
+
+        e.target.value != "" ? this.setState( ( ) => ({ isDirty: true }) ) : this.setState( ( ) => ({ isDirty: false }) )
+            
+        elements.forEach( (row) => {
+            const project = row.children[0].value;
+            const techs = row.children[1].value;
+            if( project !== "" && techs !== "" )
+                nextState.push({ title: project, skills: techs });
+        } )
+        this.setState( ( ) => ({ portfolioList: nextState }) )
     }
 
     handleSavePortfolio(){
-        this.props.handleSavePortfolio(this.state.portfolio);
-    }
-
-    componentWillReceiveProps(nextProps){
-        if( this.setState.isEditing !== nextProps.editing ){
-            const elements = document.querySelectorAll('.portfolio__square .form__row');
-            const nextState = [];
-            elements.forEach( (row) => {
-                const project = row.children[0].value;
-                const techs = row.children[1].value;
-                if( project !== "" && techs !== "" )
-                    nextState.push({ title: project, skills: techs });
-            } )
-            new Promise( (resolve, reject) => {
-                this.setState( ( ) => ({ portfolio: nextState }) )
-                resolve();
-            })
-        }
+        API.saveDataToLocalStore('toptap-portfolio-list', this.state.portfolioList);
     }
 
     renderFormRow(){
@@ -51,8 +43,8 @@ class PortfolioSquare extends Component {
         for( let i = 0; i < 7; i++ ){
             content.push( 
                 <div key={i} className="form__row">
-                    <input type="text" placeholder="Project name" defaultValue={this.props.data[i] ? this.props.data[i].title : '' } />
-                    <input type="text" placeholder="Skills used" defaultValue={this.props.data[i] ? this.props.data[i].skills : '' } />
+                    <input type="text" placeholder="Project name" defaultValue={this.state.portfolioList[i] ? this.state.portfolioList[i].title : '' }  />
+                    <input type="text" placeholder="Skills used" defaultValue={this.state.portfolioList[i] ? this.state.portfolioList[i].skills : '' } />
                 </div>
             )
         }
@@ -63,9 +55,9 @@ class PortfolioSquare extends Component {
         return (
             <div className="columns medium-3 small-12" >
                 <div className="profile__square profile__square--black portfolio__square">
-                    <h3 className="profile__square--title profile__square--title--white">{this.props.title}</h3>
+                    <h3 className="profile__square--title profile__square--title--white" onClick={this.handleSavePortfolio.bind(this)}>{this.props.title}</h3>
                     <form 
-                        onInput={this.handleSavePortfolio.bind(this)}
+                        onInput={this.handleChange.bind(this)}
                         onChange={this.handleChange.bind(this)} >
                         { this.renderFormRow() }
                     </form>
@@ -84,7 +76,7 @@ class PortfolioSquare extends Component {
                     </span>
                     <ul className="portfolio__list">
                         {
-                            this.props.data.map( (project, index) => {
+                            this.state.portfolioList.map( (project, index) => {
                                 return <li key={index}><b>{project.title}</b>, {project.skills}</li>
                             })   
                         }
