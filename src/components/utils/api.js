@@ -13,6 +13,10 @@ module.exports = {
         skills: [],
         imageURL: '',
         resumeURL: ''
-    }
+    },
+    portfolioList: [],
+    experienceList: [],
+    sampleCodeImage: '',
+    quotes: []
 }
 
