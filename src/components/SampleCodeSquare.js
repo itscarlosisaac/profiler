@@ -1,52 +1,57 @@
 import React, { Component } from 'react'
+import API from './utils/api'
 
 class SampleCodeSquare extends Component {
     constructor(props){
         super(props)
         this.state = {
-            imageURL: this.props.data || '',
             file: ''
         }
     }
 
+    componentWillMount(){
+        const store = API.getDataFromLocalStore('toptap-sampleCodeImage') || API.portfolioList;
+        this.setState( () => ({ sampleCodeImage:store }))
+    }
+
     handleChange(e){
         e.preventDefault();
-        const imageURL = this.refs.imageURL.value;
-        const file = this.refs.imageURL.files[0];
+        const sampleCodeImage = this.refs.sampleCodeImage.value;
+        const file = this.refs.sampleCodeImage.files[0];
         const reader = new FileReader();
 
         if( e.target.type == 'file' ){
             reader.onloadend = () => {
                 this.setState({
                   file: file,
-                  imageURL: reader.result
+                  sampleCodeImage: reader.result
                 });
               }
             reader.readAsDataURL(file)
             setTimeout( () => {
-                this.props.handleSampleCode(this.state.imageURL);
-            }, 1 )
+                API.saveDataToLocalStore('toptap-sampleCodeImage', this.state.sampleCodeImage);
+            }, 10 )
         }
     }
 
     renderEditing(){
-        const { imageURL } = this.state;
+        const { sampleCodeImage } = this.state;
         return (
             <div className="profile__square columns medium-3 small-12" >
-                <div className="sample__code--image--form" style={{ backgroundImage:`url(${imageURL})`} }>
-                    <input className="sample__code--input" onChange={this.handleChange.bind(this)} type="file" ref="imageURL" />
+                <div className="sample__code--image--form" style={{ backgroundImage:`url(${sampleCodeImage})`} }>
+                    <input className="sample__code--input" onChange={this.handleChange.bind(this)} type="file" ref="sampleCodeImage" />
                 </div>
             </div>
         )
     }
 
     renderContent() {
-        const { imageURL } = this.state;
+        const { sampleCodeImage } = this.state;
         return (
             <div className="columns medium-3 small-12" >
                 <div className="profile__square sample__code">
                     <h3 className="profile__square--title">Sample code <br/> and algorithms</h3>
-                    <div className="sample__code--image" style={{ backgroundImage:`url(${imageURL})`} }>
+                    <div className="sample__code--image" style={{ backgroundImage:`url(${sampleCodeImage})`} }>
                     </div>
                 </div>
             </div>
