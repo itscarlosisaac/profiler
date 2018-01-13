@@ -85,6 +85,16 @@ class HomePage extends Component {
           <h1 className="divider__title">Let me introduce myself ...</h1>
         </div>
 
+        <div className="row align-justify collapse">
+
+          <QuoteSquare 
+            quoteNum={4}
+            editing={this.state.editMode} 
+            title="The most amazing ..." />
+
+        </div>
+
+
         { this.state.editMode ? <QandAForm /> : <ToHire name="Carlos" /> }
 
         <ToptalTopSkills />
