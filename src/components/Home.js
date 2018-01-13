@@ -87,10 +87,22 @@ class HomePage extends Component {
 
         <div className="row align-justify collapse">
 
+          <ProjectSquare projectNum={1}
+            editing={this.state.editMode} 
+          />
+
+          <ProjectSquare projectNum={2}
+            editing={this.state.editMode} 
+          />
+
           <QuoteSquare 
             quoteNum={4}
             editing={this.state.editMode} 
             title="The most amazing ..." />
+
+          <ProjectSquare projectNum={3}
+            editing={this.state.editMode} 
+          />
 
         </div>
 

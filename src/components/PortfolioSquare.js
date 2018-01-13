@@ -9,7 +9,7 @@ class PortfolioSquare extends Component {
             isDirty: false
         }
     }
-
+    
     componentWillMount(){
         const store = API.getDataFromLocalStore('toptap-portfolio-list') || API.portfolioList;
         this.setState( () => ({ portfolioList:store }))

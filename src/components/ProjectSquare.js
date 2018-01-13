@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import API from './utils/api'
 
 class ProjectSquare extends Component {
     constructor(props){
         super(props)
         this.state = {
-            data: this.props.data,
             projectURL: '',
             file: '',
             title: ''
@@ -12,11 +12,12 @@ class ProjectSquare extends Component {
     }
 
     componentWillMount(){
-        this.props.data !== undefined ?
-            this.setState( () => ({ 
-                projectURL: this.state.data.projectURL,
-                title: this.state.data.title,
-             })) : false; 
+        const store = API.getDataFromLocalStore(`toptal-project-${this.props.projectNum}`) || { };
+
+        this.setState( () => ({ 
+            projectURL: store.projectURL,
+            title: store.title,
+        })) 
     }
 
     handleChange(e){
@@ -31,14 +32,15 @@ class ProjectSquare extends Component {
             reader.onloadend = () => {
                 this.setState({
                     file: file,
-                    projectURL: reader.result
+                    projectURL: reader.result,
+                    title
                 });
             }
             reader.readAsDataURL(file)
-            setTimeout( () => {
-                this.props.handleProjectSave(this.state);
-            }, 100 )
         }
+        setTimeout( () => {
+            API.saveDataToLocalStore( (`toptal-project-${this.props.projectNum}`), this.state  )
+        }, 100 )
     }
 
     renderEditing(){
