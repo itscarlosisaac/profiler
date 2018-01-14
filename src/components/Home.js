@@ -14,7 +14,7 @@ import JoinMessageBox from "./JoinMessageBox";
 import Footer from "./common/Footer";
 import PortfolioSquare from "./PortfolioSquare";
 import ProjectSquare from "./ProjectSquare";
-
+import API from './utils/api';
 import MODEL from "./utils/Model";
 
 
@@ -30,15 +30,15 @@ class HomePage extends Component {
     }));
   }
 
-
   render() {
-
+    
     return (
       <div>
         <Header />
         
         <ProfileInfo
           handleEditMode={this.handleEditMode.bind(this)}
+          
           editMode={this.state.editMode} />
 
           <div className="row align-justify collapse">
@@ -56,7 +56,9 @@ class HomePage extends Component {
             editing={this.state.editMode} />
 
           <AvailabilitySquare
+            editing={this.state.editMode} 
             title="Availability" />
+
         </div>
 
 

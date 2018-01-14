@@ -1,3 +1,6 @@
+import EventEmitter from 'events'
+
+const EEmiter = new EventEmitter();
 
 module.exports = {
     saveDataToLocalStore(name, data){
@@ -6,6 +9,7 @@ module.exports = {
     getDataFromLocalStore(dataName){
         return JSON.parse(localStorage.getItem(dataName))
     },
+    EEmiter,
     profileModel:{
         name: '',
         location: '',
@@ -17,6 +21,7 @@ module.exports = {
     portfolioList: [],
     experienceList: [],
     sampleCodeImage: '',
-    quotes: []
+    quotes: [],
+    enviroment:''
 }
 

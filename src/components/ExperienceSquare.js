@@ -12,8 +12,11 @@ class ExperienceSquare extends Component {
     }
 
     componentWillMount(){
-        const store = API.getDataFromLocalStore('toptap-experience-list') || API.experienceList;
+        const store = API.getDataFromLocalStore('toptal-experience-list') || API.experienceList;
         this.setState( () => ({ experienceList:store }))
+        API.EEmiter.addListener( 'save-enviroment', () => {
+            API.saveDataToLocalStore('toptal-experience-list', this.state.experienceList);
+        });
     }
 
     handleChange(e){
@@ -30,10 +33,6 @@ class ExperienceSquare extends Component {
         })
 
         this.setState( ( ) => ({ experienceList: nextState }) )
-    }
-
-    handleSaveExperience(){
-        API.saveDataToLocalStore('toptap-experience-list', this.state.experienceList);
     }
 
     renderFormRow(){
@@ -55,7 +54,6 @@ class ExperienceSquare extends Component {
                 <div className="profile__square profile__square--black experience__square">
                     <h3 className="profile__square--title profile__square--title--white">{this.props.title}</h3>
                     <form 
-                        onInput={this.handleSaveExperience.bind(this)}
                         onChange={this.handleChange.bind(this)} >
                         { this.renderFormRow() }
                     </form>

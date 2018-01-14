@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AddSkill from './AddSkill'
 import API from './utils/api'
+import { setTimeout } from 'timers';
 
 class ProfileInfo extends Component {
     
@@ -39,9 +40,12 @@ class ProfileInfo extends Component {
             address: addressValue,
             languages: languagesValue
         }) );
+        
+        setTimeout( () => {
+            API.EEmiter.emit('map', this.state.address );
+        }, 1000 )
 
         if( e.target.type == 'file' && e.target.name === 'profilePic' ){
-            console.log(e.target)
             reader.onloadend = () => {
                 this.setState({
                   file: file,
@@ -70,6 +74,12 @@ class ProfileInfo extends Component {
     }
 
     saveData(){
+        API.EEmiter.emit('save-portfolio')
+        API.EEmiter.emit('save-experience')
+        API.EEmiter.emit('save-sample')
+        API.EEmiter.emit('save-enviroment')
+        API.EEmiter.emit('save-quotes')
+        API.EEmiter.emit('save-projects')
         API.saveDataToLocalStore('toptal-profile-info', this.state )
     }
 
@@ -84,6 +94,7 @@ class ProfileInfo extends Component {
                 <div className="columns medium-8 large-9 small-12">
                     <header className="profile__info--header">
                         <button className="profile__info--publish" onClick={this.props.handleEditMode}> Publish Profile </button>
+                        <button className="profile__info--save" onClick={this.saveData.bind(this)}>SAVE DATA</button>
                         <form className="profile__info--form" 
                             onSubmit={this.handleSubmit.bind(this)} 
                             onChange={this.handleChange.bind(this)}>
@@ -95,8 +106,6 @@ class ProfileInfo extends Component {
                             <p className="profile__info--languages"><input ref="languages" type="text" defaultValue={ languages } /></p>
                             <AddSkill deleteFromStore={this.handleRemove.bind(this)} skills={skills} sendSkills={this.getSkills.bind(this)} />
                         </form>
-
-                        <p onClick={this.saveData.bind(this)}>SAVE DATA</p>
                         
                         <div className="profile__info--resume--group">
                             <label> <img src="../assets/images/arrow-top.png" /> Upload Resume</label>

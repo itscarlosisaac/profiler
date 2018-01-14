@@ -18,6 +18,10 @@ class ProjectSquare extends Component {
             projectURL: store.projectURL,
             title: store.title,
         })) 
+
+        API.EEmiter.addListener( 'save-projects', () => {
+            API.saveDataToLocalStore( (`toptal-project-${this.props.projectNum}`), this.state  )
+        });
     }
 
     handleChange(e){
@@ -38,27 +42,25 @@ class ProjectSquare extends Component {
             }
             reader.readAsDataURL(file)
         }
-        setTimeout( () => {
-            API.saveDataToLocalStore( (`toptal-project-${this.props.projectNum}`), this.state  )
-        }, 100 )
     }
 
     renderEditing(){
         const { projectURL, title } = this.state;
         return(
             <div className="columns medium-3 small-12" >
-                <div className="profile__square" style={{ backgroundImage:`url(${projectURL})`} }>
-                    <form onChange={this.handleChange.bind(this)} >
+                <div className="profile__square project__form" style={{ backgroundImage:`url(${projectURL})`} }>
+                    <form 
+                        onChange={this.handleChange.bind(this)} >
                         <div className="">
                             <input 
+                                placeholder="Project Title"
                                 ref="title" 
-                                className="" 
+                                className="project__title--form" 
                                 defaultValue={title} 
                                 type="text" />
                         </div>
 
                         <div>
-                            <label htmlFor="thumb">Thumbnail</label>
                             <input 
                                 className="project--input" 
                                 defaultValue={projectURL} 
@@ -78,7 +80,7 @@ class ProjectSquare extends Component {
                 <div className="profile__square project__square">
                     <div className="project__square--thumb" style={{ backgroundImage:`url(${projectURL})`} }>
                     </div>
-                    {  title != '' ? <div className="project__square--desc"> <p> {title} </p> </div> : false }
+                    {  this.state.title !== undefined ? <div className="project__square--desc"> <p> {title} </p> </div> : false }
                 </div>
             </div>
         )

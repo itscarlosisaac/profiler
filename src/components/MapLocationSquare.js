@@ -19,9 +19,12 @@ class MapLocationSquare extends Component {
 
     componentDidMount () {
         this.getLocation();
+        API.EEmiter.addListener( 'map', (address) => {
+            this.setState( () => ({ address: address }));
+            this.getLocation();
+        })
     }
     
-
     getLocation(){
         const Client = googleMapClient.createClient({
             key: 'AIzaSyCiljKtouaMaT1cr5cX3I9D1DzsbHC3iBc',
@@ -63,21 +66,6 @@ class MapLocationSquare extends Component {
             })
         });
     }
-
-    // componentWillReceiveProps(nextProps){
-    //     if( nextProps.address !== this.props.address ){
-    //         new Promise( ( resolve, reject ) => {
-    //             this.setState({ address:nextProps.address })
-    //             resolve();
-    //         })
-    //         .then( () => {
-    //             this.getLocation()
-    //         })
-    //         .catch((e) => {
-    //             console.log(e);
-    //         })
-    //     }
-    // }
 
     render () {
         return (

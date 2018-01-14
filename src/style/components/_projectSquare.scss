@@ -22,3 +22,14 @@
         color:#fff;
     }
 }
+
+.project__form{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    .project__title--form{
+        margin-bottom: 10px;
+    }
+}

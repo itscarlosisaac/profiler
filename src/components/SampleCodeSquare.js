@@ -10,8 +10,11 @@ class SampleCodeSquare extends Component {
     }
 
     componentWillMount(){
-        const store = API.getDataFromLocalStore('toptap-sampleCodeImage') || API.portfolioList;
+        const store = API.getDataFromLocalStore('toptal-sampleCodeImage') || API.portfolioList;
         this.setState( () => ({ sampleCodeImage:store }))
+        API.EEmiter.addListener( 'save-sample', () => {
+            API.saveDataToLocalStore('toptal-sampleCodeImage', this.state.sampleCodeImage);
+        });
     }
 
     handleChange(e){
@@ -28,9 +31,6 @@ class SampleCodeSquare extends Component {
                 });
               }
             reader.readAsDataURL(file)
-            setTimeout( () => {
-                API.saveDataToLocalStore('toptap-sampleCodeImage', this.state.sampleCodeImage);
-            }, 10 )
         }
     }
 

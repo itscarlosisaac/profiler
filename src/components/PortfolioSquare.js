@@ -11,8 +11,12 @@ class PortfolioSquare extends Component {
     }
     
     componentWillMount(){
-        const store = API.getDataFromLocalStore('toptap-portfolio-list') || API.portfolioList;
+        const store = API.getDataFromLocalStore('toptal-portfolio-list') || API.portfolioList;
         this.setState( () => ({ portfolioList:store }))
+
+        API.EEmiter.addListener( 'save-portfolio', () => {
+            API.saveDataToLocalStore('toptal-portfolio-list', this.state.portfolioList);
+        })
     }
 
     handleSubmit(e){
@@ -34,10 +38,6 @@ class PortfolioSquare extends Component {
         this.setState( ( ) => ({ portfolioList: nextState }) )
     }
 
-    handleSavePortfolio(){
-        API.saveDataToLocalStore('toptap-portfolio-list', this.state.portfolioList);
-    }
-
     renderFormRow(){
         const content = []
         for( let i = 0; i < 7; i++ ){
@@ -55,7 +55,7 @@ class PortfolioSquare extends Component {
         return (
             <div className="columns medium-3 small-12" >
                 <div className="profile__square profile__square--black portfolio__square">
-                    <h3 className="profile__square--title profile__square--title--white" onClick={this.handleSavePortfolio.bind(this)}>{this.props.title}</h3>
+                    <h3 className="profile__square--title profile__square--title--white">{this.props.title}</h3>
                     <form 
                         onInput={this.handleChange.bind(this)}
                         onChange={this.handleChange.bind(this)} >
