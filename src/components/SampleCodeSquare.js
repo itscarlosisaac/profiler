@@ -51,6 +51,7 @@ class SampleCodeSquare extends Component {
             <div className="columns medium-3 small-12" >
                 <div className="profile__square sample__code">
                     <h3 className="profile__square--title">Sample code <br/> and algorithms</h3>
+                    { sampleCodeImage.length == "" ? <p className="no__content">Add Content </p> : false }
                     <div className="sample__code--image" style={{ backgroundImage:`url(${sampleCodeImage})`} }>
                     </div>
                 </div>

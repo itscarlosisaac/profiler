@@ -79,6 +79,7 @@ class ProjectSquare extends Component {
             <div className="columns medium-3 small-12" >
                 <div className="profile__square project__square">
                     <div className="project__square--thumb" style={{ backgroundImage:`url(${projectURL})`} }>
+                    { title == undefined && projectURL == undefined ? <p className="no__content">Add Content </p> : false }
                     </div>
                     {  this.state.title !== undefined ? <div className="project__square--desc"> <p> {title} </p> </div> : false }
                 </div>

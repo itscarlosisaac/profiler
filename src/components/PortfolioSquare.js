@@ -74,6 +74,9 @@ class PortfolioSquare extends Component {
                     <span className="portfolio__subtitle">
                         { this.props.subtitle }
                     </span>
+                    {
+                        this.state.portfolioList == '' ? <p className="no__content">Add Content </p> : false
+                    }
                     <ul className="portfolio__list">
                         {
                             this.state.portfolioList.map( (project, index) => {

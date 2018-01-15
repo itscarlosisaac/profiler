@@ -77,6 +77,9 @@ class QuoteSquare extends Component {
                                 </span> : false
                         }
                     </blockquote>
+                    {
+                        this.state.quote == "" ? <p className="no__content">Add Content </p> : false
+                    }
                     <span className="profile__square--right--quote">&rdquo;</span>
                 </div>
             </div>

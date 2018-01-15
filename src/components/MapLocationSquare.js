@@ -70,6 +70,7 @@ class MapLocationSquare extends Component {
     render () {
         return (
             <div className={`columns medium-3 small-12 map__square ${this.state.noMap ? 'no-map' : false }`}>
+            { this.state.noMap  ? <p className="no__content">Add Content </p> : false }
                 <div id="map"> </div>
                 {
                     this.props.name !== undefined ?

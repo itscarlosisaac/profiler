@@ -122,7 +122,7 @@ class ProfileInfo extends Component {
         return(
             <div className="row profile__info">
                 <div className="columns large-3 medium-4 profile__info--image" style={{ backgroundImage:`url(${imageURL})`} }>
-                    
+                    { imageURL == "" ? <p className="profile__info--image--message">Add profile image</p> : false}
                 </div>
                 <div className="columns medium-8 large-9 small-12">
                     <header className="profile__info--header">

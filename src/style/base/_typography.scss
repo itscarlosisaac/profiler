@@ -138,3 +138,20 @@ sub {
     font-size: 16px;
     font-family: Georgia, Times, Times New Roman, serif;
 }
+
+.no__content{
+    text-align: center;
+    font-size: 16px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    margin: auto;
+    width: 80%;
+    height: 25px;
+    &--initial{
+        position: initial;
+        text-align: center;
+    }
+}

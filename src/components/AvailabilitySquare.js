@@ -60,6 +60,7 @@ class AvailabilitySquare extends Component {
                     <h2 className="availability__square--bigTitle">Full-Time</h2>
                     <hr className="section__divider"/>
                     <h3 className="profile__square--title profile__square--title--smallMar">Preferred enviroment</h3>
+                    { this.state.enviroment == "" ? <p className="no__content--initial">Add Content </p> : false }
                     <p className="availability__square--enviroments">
                         {this.state.enviroment}
                     </p>

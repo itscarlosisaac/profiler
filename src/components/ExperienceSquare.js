@@ -67,6 +67,7 @@ class ExperienceSquare extends Component {
             <div className="columns medium-3 small-12" >
                 <div className="experience__square">
                     <h3 className="profile__square--title">{this.props.title}</h3>
+                    { this.state.experienceList.length == 0 ? <p className="no__content">Add Content </p> : false }
                     <ul className="experience__list">
                         {
                             this.state.experienceList.map( (exp, index) => {
