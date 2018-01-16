@@ -77,6 +77,9 @@ class MapLocationSquare extends Component {
                     this.state.name !== undefined ?
                         <div className="map__address">
                             { this.state.name.split(' ')[0] } lives in {this.state.address} (see map)
+                            <div className="plus--container">
+                                <span className="plus--icon">+</span>
+                            </div>
                         </div> : ''
                 }
                
