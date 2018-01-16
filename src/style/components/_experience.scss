@@ -12,12 +12,22 @@
             color:#4d4d4d;
         }
     }
+    .profile__square--title--white{ margin-bottom: 0; }
 
     .form__row{
-        margin-bottom: 4px;
+        margin-bottom:0;
         input{
             display: inline-block;
             width: 49%;
+            height: 20px;
+            font-size: 12px;
         }
+    }
+    .add__skill__form--checked{
+        color: #fff;
+        position: absolute;
+        bottom: 0px;
+        left: 13px;
+        top: initial;
     }
 }

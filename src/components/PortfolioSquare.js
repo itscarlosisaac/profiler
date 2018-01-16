@@ -61,6 +61,9 @@ class PortfolioSquare extends Component {
                         onChange={this.handleChange.bind(this)} >
                         { this.renderFormRow() }
                     </form>
+                    {
+                        this.state.portfolioList.length !==  0 ? <span className="add__skill__form--checked">&#10003;</span> : null
+                    }
                 </div>
             </div>
         )

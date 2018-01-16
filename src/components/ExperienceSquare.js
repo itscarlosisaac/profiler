@@ -57,6 +57,9 @@ class ExperienceSquare extends Component {
                         onChange={this.handleChange.bind(this)} >
                         { this.renderFormRow() }
                     </form>
+                    {
+                        this.state.experienceList.length !==  0 ? <span className="add__skill__form--checked">&#10003;</span> : null
+                    }
                 </div>
             </div>
         )
