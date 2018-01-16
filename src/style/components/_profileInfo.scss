@@ -112,13 +112,20 @@
         }
     }
 
+    .add__skill__form--checked { display: none; }
+    input{
+        &:focus + span{
+            display: block;
+        }
+    }
     &--address{
         font-weight: 600;
         color:#4d4d4d;
         font-style: normal;
         margin: 0 0 -6px 0;
         position: relative;
-        width: inherit;
+        display: block;
+        max-width: 180px;
         .add__skill__form--checked { right: -5px; }
         input{
             font-weight: 600;
@@ -131,6 +138,7 @@
                 outline: 1px solid rgba(0, 0, 0, 0.1);
                 background: white;
             }
+            
         }
     }
 
@@ -140,7 +148,8 @@
         font-style: normal;
         margin: 0 0 10px 0;
         position: relative;
-        width: inherit;
+        display: block;
+        max-width: 180px;
         .add__skill__form--checked { right: -5px; }
         input{
             font-weight: 600;

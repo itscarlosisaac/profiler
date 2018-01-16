@@ -56,6 +56,9 @@ class QuoteSquare extends Component {
                         onChange={this.handleChange.bind(this)}  >
                         <textarea className="quote__text__field" defaultValue={this.state.quote}></textarea>
                     </form>
+                    {
+                        this.state.quote !== "" ? <span className="add__skill__form--checked">&#10003;</span> : null
+                    }
                 </div>
             </div>
         )
