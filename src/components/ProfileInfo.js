@@ -94,8 +94,11 @@ class ProfileInfo extends Component {
                 
                 <div className="columns medium-8 large-9 small-12">
                     <header className="profile__info--header">
-                        <button className="profile__info--publish" onClick={this.props.handleEditMode}> Publish Profile </button>
-                        <button className="profile__info--save" onClick={this.saveData.bind(this)}>SAVE DATA</button>
+                        <div className="profile__button__group">
+                            <button className="profile__info--publish" onClick={this.props.handleEditMode}> Publish Profile </button>
+                            <button className="profile__info--save" onClick={this.saveData.bind(this)}>SAVE DATA</button>
+                            <p>(You can only publish a complete profile)</p>
+                        </div>
                         <form className="profile__info--form" 
                             onSubmit={this.handleSubmit.bind(this)} 
                             onChange={this.handleChange.bind(this)}>
@@ -127,7 +130,9 @@ class ProfileInfo extends Component {
                 </div>
                 <div className="columns medium-8 large-9 small-12">
                     <header className="profile__info--header">
-                    <button className="profile__info--publish" onClick={this.props.handleEditMode}> Edit Profile </button>
+                        <div className="profile__button__group">
+                            <button className="profile__info--publish" onClick={this.props.handleEditMode}> Edit Profile </button>
+                        </div>
                         <h1 className="profile__info--title"> { name } </h1>
                         <address className="profile__info--address"> { address } </address>
                         <p className="profile__info--languages"> { languages }</p>

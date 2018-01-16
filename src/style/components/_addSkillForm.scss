@@ -57,4 +57,9 @@
         width: 100px;
         border: 1px solid gray;
     }
+    &--checked{
+        position: absolute;
+        right: 5px;
+        top: 2px;
+    }
 }

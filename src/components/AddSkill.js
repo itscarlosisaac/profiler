@@ -54,7 +54,7 @@ class AddSkill extends Component {
                 <div className="add__skill__form">
                     <input onChange={this.handleChange.bind(this)} ref="skill" className="add__skill__form--input" type="text" placeholder="Skill" />
                     {
-                        this.state.isFieldDirty ? <span>&#10003;</span> : null
+                        this.state.isFieldDirty ? <span className="add__skill__form--checked">&#10003;</span> : null
                     }
                     <select ref="option" className="add__skill__form--select">
                         <option value="basic">Basic</option>

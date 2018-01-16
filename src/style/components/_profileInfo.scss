@@ -10,6 +10,7 @@
         background: #000;
         background-size: cover;
         background-position: center;
+        overflow: hidden;
         &--message{
             position: absolute;
             left:0;
@@ -86,7 +87,7 @@
     }
 
     &--header{
-        padding: 20px 30px;
+        padding: 20px 0 20px 30px;
         width: 100%;
         height: 100%;
         position: relative;
@@ -177,9 +178,28 @@
         display: inline-block;
         text-transform: uppercase;
         padding: 10px 12px 7px;
-        position: absolute;
-        right: 0;
-        top:20px;
+        cursor: pointer;
+        transition: background-color 200ms ease-in;
+        &:hover{
+            background-color: #000;
+            color:#fff;
+        }
+    }
+
+    .profile__button__group{
+        float: right;
+        button{
+            display: inline-block;
+            margin: 0 5px 0 0;
+            &:last-child{ margin: 0; }
+        }
+        p{
+            display: block;
+        }
+    }
+    .profile__info--form{
+        float: left;
+        width: calc(100% - 270px);
     }
 
     &--save{
@@ -190,9 +210,26 @@
         display: inline-block;
         text-transform: uppercase;
         padding: 10px 12px 7px;
-        position: absolute;
-        right: 160px;
-        top:20px;
+        cursor: pointer;
+        transition: background-color 200ms ease-in;
+        &:hover{
+            background-color: #000;
+            color:#fff;
+        }
+    }
+}
+
+@media all and (max-width:$tablet){
+    .profile__info{    
+        
+        .profile__info--form{
+            width: 100%;
+            float: none;
+        }
+        .profile__button__group{
+            float: none;
+            margin-bottom: 20px;
+        }
     }
 }
 
@@ -202,6 +239,18 @@
             input{
                 width: 100%;
             }
+        }
+        &--header{
+            padding: 20px 30px;
+        }
+    
+        .profile__info--form{
+            width: 100%;
+            float: none;
+        }
+        .profile__button__group{
+            float: none;
+            margin-bottom: 20px;
         }
         &--save{
             position: initial;
