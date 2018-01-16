@@ -40,11 +40,12 @@ class ProfileInfo extends Component {
             address: addressValue,
             languages: languagesValue
         }) );
-        
+
+
         setTimeout( () => {
-            API.EEmiter.emit('map', this.state.address, this.state.name );
             API.EEmiter.emit('get-name', this.state.name );
-        }, 1000 )
+            API.EEmiter.emit('map', this.state.address, this.state.name );
+        }, 200 )
 
         if( e.target.type == 'file' && e.target.name === 'profilePic' ){
             reader.onloadend = () => {
@@ -74,6 +75,7 @@ class ProfileInfo extends Component {
         this.setState( ( ) => ({ skills: next }) )
     }
 
+
     saveData(){
         API.EEmiter.emit('save-portfolio')
         API.EEmiter.emit('save-experience')
@@ -99,7 +101,7 @@ class ProfileInfo extends Component {
                             <button className="profile__info--save" onClick={this.saveData.bind(this)}>SAVE DATA</button>
                             <p>(You can only publish a complete profile)</p>
                         </div>
-                        <form className="profile__info--form" 
+                        <form className="profile__info--form"
                             onSubmit={this.handleSubmit.bind(this)} 
                             onChange={this.handleChange.bind(this)}>
 
@@ -110,7 +112,7 @@ class ProfileInfo extends Component {
                                 }
                             </h1>
                             <address className="profile__info--address">
-                                <input ref="address" type="text" defaultValue={ address } placeholder="Add Location" />
+                                <input ref="address" name="address" type="text" defaultValue={ address } placeholder="Add Location" />
                                 {
                                     this.state.address ? <span className="add__skill__form--checked">&#10003;</span> : null
                                 }

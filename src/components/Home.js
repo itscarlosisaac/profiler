@@ -29,8 +29,10 @@ class HomePage extends Component {
       editMode: !prevState.editMode
     }));
   }
-  
+
   componentWillMount(){
+    const store = API.getDataFromLocalStore('toptal-profile-info') || API.profileModel;
+    this.setState( () => ({ name: store.name }))
     API.EEmiter.addListener( 'get-name', (name) => {
       this.setState( () => ({ name: name }))
     });

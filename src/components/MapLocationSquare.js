@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import googleMapClient from '@google/maps'
 import GoogleMapsLoader from 'google-maps'
 import API from './utils/api'
+import { setTimeout } from 'timers';
 
 class MapLocationSquare extends Component {
     constructor(props){
@@ -15,15 +16,17 @@ class MapLocationSquare extends Component {
 
     componentWillMount(){
         const store = API.getDataFromLocalStore('toptal-profile-info') || API.profileModel;
-        this.setState( () => ({ address: store.address }))
+        this.setState( () => ({ address: store.address, name: store.name }))
     }
 
     componentDidMount () {
-        this.getLocation();
-        API.EEmiter.addListener( 'map', (address, name ) => {
-            this.setState( () => ({ address: address, name: name }));
-            this.getLocation();
-        })
+        setTimeout( () => {
+            this.state.address !== "Add Location" ? this.getLocation() : false;
+            API.EEmiter.addListener( 'map', (address, name ) => {
+                this.setState( () => ({ address: address, name: name }));
+                this.getLocation();
+            })
+        }, 500 )
     }
     
     getLocation(){
