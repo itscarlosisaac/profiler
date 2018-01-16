@@ -8,7 +8,8 @@ class MapLocationSquare extends Component {
         super(props);
         this.state = {
             geolocation: {},
-            noMap: true
+            noMap: true,
+            name: ''
         }
     }
 
@@ -19,8 +20,8 @@ class MapLocationSquare extends Component {
 
     componentDidMount () {
         this.getLocation();
-        API.EEmiter.addListener( 'map', (address) => {
-            this.setState( () => ({ address: address }));
+        API.EEmiter.addListener( 'map', (address, name ) => {
+            this.setState( () => ({ address: address, name: name }));
             this.getLocation();
         })
     }
@@ -73,9 +74,9 @@ class MapLocationSquare extends Component {
             { this.state.noMap  ? <p className="no__content">Add Content </p> : false }
                 <div id="map"> </div>
                 {
-                    this.props.name !== undefined ?
+                    this.state.name !== undefined ?
                         <div className="map__address">
-                            { this.props.name.split(' ')[0] } lives in {this.state.address} (see map)
+                            { this.state.name.split(' ')[0] } lives in {this.state.address} (see map)
                         </div> : ''
                 }
                

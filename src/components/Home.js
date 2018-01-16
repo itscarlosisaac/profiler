@@ -38,7 +38,6 @@ class HomePage extends Component {
         
         <ProfileInfo
           handleEditMode={this.handleEditMode.bind(this)}
-          
           editMode={this.state.editMode} />
 
           <div className="row align-justify collapse">

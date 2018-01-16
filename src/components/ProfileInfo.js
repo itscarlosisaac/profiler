@@ -42,7 +42,7 @@ class ProfileInfo extends Component {
         }) );
         
         setTimeout( () => {
-            API.EEmiter.emit('map', this.state.address );
+            API.EEmiter.emit('map', this.state.address, this.state.name );
         }, 1000 )
 
         if( e.target.type == 'file' && e.target.name === 'profilePic' ){
