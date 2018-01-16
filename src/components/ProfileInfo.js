@@ -104,10 +104,23 @@ class ProfileInfo extends Component {
                             onChange={this.handleChange.bind(this)}>
 
                             <h1 className="profile__info--title">
-                                <input ref="name"  type="text" defaultValue={ name } />
+                                <input ref="name"  type="text" defaultValue={ name }  placeholder="Add Name" />
+                                {
+                                    this.state.name ? <span className="add__skill__form--checked">&#10003;</span> : null
+                                }
                             </h1>
-                            <address className="profile__info--address"><input ref="address" type="text" defaultValue={ address } /></address>
-                            <p className="profile__info--languages"><input ref="languages" type="text" defaultValue={ languages } /></p>
+                            <address className="profile__info--address">
+                                <input ref="address" type="text" defaultValue={ address } placeholder="Add Location" />
+                                {
+                                    this.state.address ? <span className="add__skill__form--checked">&#10003;</span> : null
+                                }
+                            </address>
+                            <p className="profile__info--languages">
+                                <input ref="languages" type="text" defaultValue={ languages }  placeholder="Add Languages"/>
+                                {
+                                    this.state.languages ? <span className="add__skill__form--checked">&#10003;</span> : null
+                                }
+                            </p>
                             <AddSkill deleteFromStore={this.handleRemove.bind(this)} skills={skills} sendSkills={this.getSkills.bind(this)} />
                         </form>
                         

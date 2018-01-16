@@ -97,11 +97,13 @@
         font-size: 42px;
         font-weight: lighter;
         margin: 0 0 -6px 0;
+        position: relative;
         input{
             font-size: 42px;
             font-weight: lighter;
             margin: 0 0 -6px -1px;
             background: transparent;
+            width: 100%;
             border:none;
             &:focus{
                 outline: 1px solid rgba(0, 0, 0, 0.1);
@@ -115,6 +117,9 @@
         color:#4d4d4d;
         font-style: normal;
         margin: 0 0 -6px 0;
+        position: relative;
+        width: inherit;
+        .add__skill__form--checked { right: -5px; }
         input{
             font-weight: 600;
             color:#4d4d4d;
@@ -134,6 +139,9 @@
         color:#4d4d4d;
         font-style: normal;
         margin: 0 0 10px 0;
+        position: relative;
+        width: inherit;
+        .add__skill__form--checked { right: -5px; }
         input{
             font-weight: 600;
             color:#4d4d4d;
@@ -188,6 +196,8 @@
 
     .profile__button__group{
         float: right;
+        position: relative;
+        z-index: 10;
         button{
             display: inline-block;
             margin: 0 5px 0 0;
