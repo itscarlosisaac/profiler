@@ -21,7 +21,7 @@ import MODEL from "./utils/Model";
 class HomePage extends Component {
   constructor(props) {
       super(props);
-      this.state = { };
+      this.state = { name: '' };
   }
 
   handleEditMode() {
@@ -29,7 +29,11 @@ class HomePage extends Component {
       editMode: !prevState.editMode
     }));
   }
+  
   componentWillMount(){
+    API.EEmiter.addListener( 'get-name', (name) => {
+      this.setState( () => ({ name: name }))
+    });
   }
 
   render() {
@@ -110,7 +114,7 @@ class HomePage extends Component {
         </div>
 
 
-        { this.state.editMode ? <QandAForm /> : <ToHire name="Carlos" /> }
+        { this.state.editMode ? <QandAForm /> : <ToHire name={this.state.name} /> }
 
         <ToptalTopSkills />
         <JoinMessageBox />

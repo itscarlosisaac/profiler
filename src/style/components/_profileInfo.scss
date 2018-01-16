@@ -105,6 +105,7 @@
             background: transparent;
             width: 100%;
             border:none;
+            padding-right: 40px;
             &:focus{
                 outline: 1px solid rgba(0, 0, 0, 0.1);
                 background: white;
@@ -126,7 +127,7 @@
         position: relative;
         display: block;
         max-width: 180px;
-        .add__skill__form--checked { right: -5px; }
+        .add__skill__form--checked { right: -25px; }
         input{
             font-weight: 600;
             color:#4d4d4d;
@@ -134,6 +135,7 @@
             margin: 0 0 -6px -1px;
             background: transparent;
             border:none;
+            padding-right: 20px;
             &:focus{
                 outline: 1px solid rgba(0, 0, 0, 0.1);
                 background: white;
@@ -150,7 +152,7 @@
         position: relative;
         display: block;
         max-width: 180px;
-        .add__skill__form--checked { right: -5px; }
+        .add__skill__form--checked { right: -25px; }
         input{
             font-weight: 600;
             color:#4d4d4d;
@@ -158,6 +160,7 @@
             margin: 0 0 -6px -1px;
             background: transparent;
             border:none;
+            padding-right: 20px;
             &:focus{
                 outline: 1px solid rgba(0, 0, 0, 0.1);
                 background: white;
