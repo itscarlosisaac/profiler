@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "serve": "webpack-dev-server",
-    "live": "live-server dist/"
+    "live": "live-server dist/",
+    "build": "webpack",
+    "build:prod": "webpack -p --env production"
   },
   "dependencies": {
     "@google/maps": "^0.4.5",

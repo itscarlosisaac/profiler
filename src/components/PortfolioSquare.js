@@ -67,12 +67,16 @@ class PortfolioSquare extends Component {
     }
 
     renderContent(){
+        const uniqueSkills = []
+        this.state.portfolioList.map(function(elem, pos) {
+            uniqueSkills.indexOf(elem.skills) == -1 ? uniqueSkills.push(elem.skills) : false;
+        });
         return(
             <div className="columns medium-3 small-12" >
                 <div className="portfolio__square">
                     <h3 className="profile__square--title profile__square--title--hasSub">{this.props.title}</h3>
                     <span className="portfolio__subtitle">
-                        { this.props.subtitle }
+                    { uniqueSkills.join(', ')}
                     </span>
                     {
                         this.state.portfolioList == '' ? <p className="no__content">Add Content </p> : false
