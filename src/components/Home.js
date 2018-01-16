@@ -29,6 +29,8 @@ class HomePage extends Component {
       editMode: !prevState.editMode
     }));
   }
+  componentWillMount(){
+  }
 
   render() {
     
