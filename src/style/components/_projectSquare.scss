@@ -3,6 +3,7 @@
     width: 100%;
     height: inherit;
     display: block;
+    overflow:hidden;
     &--thumb{
         left:0;
         top:0;
@@ -24,6 +25,7 @@
 }
 
 .project__form{
+    overflow:hidden;
     display: flex;
     justify-content: center;
     align-content: center;
