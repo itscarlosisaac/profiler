@@ -17,7 +17,6 @@ import ProjectSquare from "./ProjectSquare";
 import API from './utils/api';
 import MODEL from "./utils/Model";
 
-
 class HomePage extends Component {
   constructor(props) {
       super(props);
